@@ -1,0 +1,10 @@
+function BW =  preprocessing(I)
+% I=imresize(I,1.5);
+BW1=rgb2gray(I);           %灰度化
+thresh = graythresh(BW1);
+BW2 = imbinarize(BW1,thresh);  %二值化
+BW2=~BW2;
+% se=strel('disk',1); 
+% BW2=imclose(BW2,se);
+BW2=bwareaopen(BW2,30,8);    %去噪点
+BW=BW2;                  
